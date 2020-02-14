@@ -15,7 +15,7 @@ class Utils {
         const val ARG_VIDEO_POSITION = "arg_video_position"
         const val ARG_VIDEO_PATH = "arg_video_path"
 
-        fun buildMediaSource(context:Context, uri: Uri): MediaSource {
+        fun buildMediaSource(context: Context, uri: Uri): MediaSource {
             val dataSourceFactory = DefaultDataSourceFactory(context, "exoplayer-codelab")
             return ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(uri)

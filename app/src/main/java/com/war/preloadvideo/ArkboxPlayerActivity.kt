@@ -51,6 +51,7 @@ class ArkboxPlayerActivity : AppCompatActivity() {
         if (Util.SDK_INT <= 23) {
             releasePlayer()
         }
+        cancelRotation()
     }
 
     public override fun onStop() {
@@ -58,6 +59,7 @@ class ArkboxPlayerActivity : AppCompatActivity() {
         if (Util.SDK_INT > 23) {
             releasePlayer()
         }
+        cancelRotation()
     }
 
     private fun preparePager() {
@@ -86,7 +88,6 @@ class ArkboxPlayerActivity : AppCompatActivity() {
                 if (currentPosition != position) {
                     stateAdapter.getVideoFragment(currentPosition).pauseVideo(player)
                     currentPosition = position
-
                 }
                 rotateItem()
                 stateAdapter.getVideoFragment(position).playVideo(player)
@@ -98,10 +99,7 @@ class ArkboxPlayerActivity : AppCompatActivity() {
     }
 
     private fun rotateItem() {
-        if (countDownTimer != null) {
-            countDownTimer?.cancel()
-            countDownTimer = null
-        }
+        cancelRotation()
         countDownTimer =
             object : CountDownTimer(TimeUnit.SECONDS.toMillis(10), TimeUnit.SECONDS.toMillis(10)) {
                 override fun onFinish() {
@@ -126,6 +124,13 @@ class ArkboxPlayerActivity : AppCompatActivity() {
                 }
             }
         countDownTimer?.start()
+    }
+
+    private fun cancelRotation() {
+        if (countDownTimer != null) {
+            countDownTimer?.cancel()
+            countDownTimer = null
+        }
     }
 
     private fun initializePlayer() {

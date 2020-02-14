@@ -15,6 +15,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
 
 
@@ -63,8 +64,10 @@ class CustomFragment : Fragment() {
         mPlayerView = rootView.findViewById(R.id.mPlayerView)
 
         if (videoPosition.rem(2) == 0) {
+            mPlayerView.setShutterBackgroundColor(Color.MAGENTA)
             linearContainer.setBackgroundColor(Color.MAGENTA)
         } else {
+            mPlayerView.setShutterBackgroundColor(Color.CYAN)
             linearContainer.setBackgroundColor(Color.CYAN)
         }
     }
@@ -91,9 +94,9 @@ class CustomFragment : Fragment() {
             player?.playWhenReady = true
             player?.addListener(object : Player.EventListener {
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
-//                    if (isPlaying) {
-//                     slideView(mPlayerView, 0, 600)
-//                    }
+                    if (isPlaying) {
+                        slideView(mPlayerView, 0, 720)
+                    }
                 }
             })
             player?.prepare(Utils.buildMediaSource(c, Uri.parse(videoPath)), false, false)
@@ -105,7 +108,7 @@ class CustomFragment : Fragment() {
 
         val slideAnimator = ValueAnimator
             .ofInt(currentHeight, newHeight)
-            .setDuration(500)
+            .setDuration(300)
 
         /* We use an update listener which listens to each tick
          * and manually updates the height of the view  */
@@ -119,7 +122,6 @@ class CustomFragment : Fragment() {
         /*  We use an animationSet to play the animation  */
 
         val animationSet = AnimatorSet()
-        animationSet.interpolator = AccelerateDecelerateInterpolator()
         animationSet.play(slideAnimator)
         animationSet.start()
     }

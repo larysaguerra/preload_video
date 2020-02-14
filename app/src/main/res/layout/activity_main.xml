@@ -22,8 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Media Manager"
         android:onClick="onClickMediaManager"
+        android:text="Media Manager"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -36,6 +37,7 @@
         android:layout_marginTop="20dp"
         android:onClick="onClickVideoView"
         android:text="Video View"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMediaManager" />
@@ -48,6 +50,7 @@
         android:layout_marginTop="20dp"
         android:onClick="onClickExoPlayer"
         android:text="Exo Player"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnVideoView" />
@@ -60,6 +63,7 @@
         android:layout_marginTop="20dp"
         android:onClick="onClickArkboxPlayer"
         android:text="Arkbox Player"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnExoPlayer" />

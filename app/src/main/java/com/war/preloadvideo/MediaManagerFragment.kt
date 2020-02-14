@@ -37,18 +37,15 @@ class ItemFragment : Fragment(),
     }
 
     override fun onError(mPlayer: MediaPlayer?, p1: Int, p2: Int): Boolean {
-        mediaPlayer = mPlayer
+        Log.e("guerra", "Error Video Path: $videoPath what $p1 extra $p2")
         return false
     }
 
     override fun onPrepared(mPlayer: MediaPlayer?) {
-        mediaPlayer = mPlayer
-        mediaPlayer?.start()
+        mPlayer?.start()
     }
 
     override fun onCompletion(mPlayer: MediaPlayer?) {
-        mediaPlayer = mPlayer
-
     }
 
     override fun onStop() {
